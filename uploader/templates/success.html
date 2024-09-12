@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Saved Data</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>Saved Data</h2>
+    
+    {% if extracted_data %}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    {% for key in extracted_data.0.selected_columns_data.keys %}
+                        <th>{{ key }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in extracted_data %}
+                    <tr>
+                        {% for value in data.selected_columns_data.values %}
+                            <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No data saved yet.</p>
+    {% endif %}
+    
+    <a href="{% url 'file-upload' %}" class="btn btn-primary">Upload More Files</a>
+</div>
+</body>
+</html>
